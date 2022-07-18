@@ -140,6 +140,9 @@ async function loadStuff() {
 		let clipped_url = (url.startsWith("https://") ? url.slice(8) : (url.startsWith("http://") ? url.slice(7) : url))
 		clipped_url = clipped_url.split("/")[0];
 		const image = "https://retail-silver-bison.faviconkit.com/" + clipped_url + "/64"
+		if (!(url.startsWith("https://") || url.startsWith("http://"))) {
+			url = "http://" + url;
+		}
 		favorites.push({title: name, url: url, image: image});
 		setFavorites(favorites);
 		location.reload();
