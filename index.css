@@ -152,4 +152,5 @@ a:visited {
 }
 #frame {
 	background-color: white;
+	border-radius: 5px 5px 0 0;
 }
