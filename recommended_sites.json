@@ -1,0 +1,52 @@
+[
+	{
+		"title": "Google",
+		"url": "https://www.google.com",
+		"image": "Google.png"
+	},
+	{
+		"title": "DuckDuckGo",
+		"url": "https://duckduckgo.com",
+		"image": "DDG.png"
+	},
+	{
+		"title": "Bing",
+		"url": "https://www.bing.com",
+		"image": "Bing.png"
+	},
+	{
+		"title": "Ecosia",
+		"url": "https://www.ecosia.org",
+		"image": "https://infopages-prod-cdn.ecosia.org/assets/images/favicon-37b4463317.ico"
+	},
+	{
+		"title": "Instagram",
+		"url": "https://www.instagram.com",
+		"image": "Insta.png"
+	},
+	{
+		"title": "Infinity Homepage",
+		"url": "https://m.inftab.com",
+		"image": "InfHome.png"
+	},
+	{
+		"title": "AccuRadio",
+		"url": "https://www.accuradio.com",
+		"image": "AccuRadio.png"
+	},
+	{
+		"title": "Android Emulator",
+		"url": "https://www.apkonline.net/runapk/start-androidapk.html?app=android_blank",
+		"image": "droid.png"
+	},
+	{
+		"title": "Rammerhead Browser",
+		"url": "https://browser.rammerhead.org",
+		"image": "rammerhead.png"
+	},
+	{
+		"title": "Discord",
+		"url": "https://www.discord.com/app",
+		"image": "discord.png"
+	}
+]
