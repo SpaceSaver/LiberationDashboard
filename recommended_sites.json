@@ -48,5 +48,10 @@
 		"title": "Discord",
 		"url": "https://www.discord.com/app",
 		"image": "discord.png"
+	},
+	{
+		"title": "YouTube",
+		"url": "https://m.youtube.com/",
+		"image": "YouTube.png"
 	}
 ]
