@@ -36,7 +36,7 @@ function getFavorites() {
 }
 async function getRamSession() {
 	const ram_cookie = getCookie("ram");
-	const new_id = (await (await fetch("https://fetchrammerheadsession.spacesaver2000.repl.co/?existing=" + encodeURIComponent(ram_cookie))).text());
+	const new_id = (await (await fetch("https://fetchrammerheadsession.spacesaver2000.repl.co/?existing=" + encodeURIComponent(ram_cookie.includes("error") ? undefined : ram_cookie))).text());
 	console.log(new_id);
 	setCookie("ram", new_id, 365250);
 	return new_id;
