@@ -38,6 +38,10 @@ async function getRamSession() {
 	const ram_cookie = getCookie("ram");
 	const new_id = (await (await fetch("https://fetchrammerheadsession.spacesaver2000.repl.co/?existing=" + encodeURIComponent(ram_cookie.toLowerCase().includes("error") ? undefined : ram_cookie))).text());
 	console.log(new_id);
+	if (new_id.toLowerCase().includes("error")) {
+		alert("An error has occured while fetching rammerhead id.");
+		throw("Invalid id.");
+	}
 	setCookie("ram", new_id, 365250);
 	return new_id;
 }
