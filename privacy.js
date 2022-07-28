@@ -64,18 +64,11 @@ function loadStuff() {
 	}).catch(err => {
 		console.log(err);
 	});
-	const frame = document.getElementById("frame");
-	const button = document.getElementById("fs");
-	// button.addEventListener("click", () => {
-	// 	console.log("clock");
-	// 	window.location.hash = "fs"
-	// });
-	window.onhashchange = () => {
-		if (window.location.hash === "#fs") {
-			frame.classList.add("fs");
-		} else {
-			frame.classList.remove("fs");
-		}
-	}
+	const clear = document.querySelector("#clear");
+	clear.addEventListener("click", () => {
+		deleteCookie("ram");
+		deleteCookie("favs");
+		alert("Cookies deleted!");
+	});
 }
 window.onload = loadStuff;
