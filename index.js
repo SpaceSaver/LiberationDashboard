@@ -137,7 +137,7 @@ async function loadStuff() {
 	}
 	const add_custom = document.getElementById("add_custom");
 	add_custom.addEventListener("click", () => {
-		const url = prompt("What url would you like to add?");
+		let url = prompt("What url would you like to add?");
 		if (!url) return;
 		const name = prompt("What would you like to call this?")
 		if (!name) return;
