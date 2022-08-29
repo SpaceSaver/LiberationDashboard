@@ -60,7 +60,7 @@ function setFavorites(favs) {
 }
 function loadStuff() {
 	getRamSession().then(ram => {
-		document.getElementById("open_in_ram").href = "https://rammerhead-spacesaver.herokuapp.com/" + ram + "/" + window.location.href;
+		document.getElementById("open_in_ram").href = "https://rammerhead-heroku.spacesaver2000.repl.co/" + ram + "/" + window.location.href;
 	}).catch(err => {
 		console.log(err);
 	});
