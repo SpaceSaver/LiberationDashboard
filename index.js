@@ -112,7 +112,7 @@ function injectTile(container, title, url, image, favorite_status, reverse) {
 	open_ram.addEventListener("click", async () => {
 		open_ram.textContent = "Connecting..."
 		const ram = await getRamSession();
-		window.location.href = "https://rammerhead-spacesaver.herokuapp.com/" + ram + "/" + url;
+		window.location.href = "https://rammerhead-heroku.spacesaver2000.repl.co/" + ram + "/" + url;
 	});
 	box.appendChild(name);
 	box.appendChild(fav_butt);
@@ -151,6 +151,6 @@ async function loadStuff() {
 		setFavorites(favorites);
 		location.reload();
 	});
-	document.getElementById("open_in_ram").href = "https://rammerhead-spacesaver.herokuapp.com/" + (await getRamSession()) + "/" + window.location.href;
+	document.getElementById("open_in_ram").href = "https://rammerhead-heroku.spacesaver2000.repl.co/" + (await getRamSession()) + "/" + window.location.href;
 }
 window.onload = loadStuff;
