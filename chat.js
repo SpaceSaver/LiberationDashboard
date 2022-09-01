@@ -36,11 +36,17 @@ function getFavorites() {
 }
 async function getRamSession() {
 	const ram_cookie = getCookie("ram");
-	const new_id = (await (await fetch("https://fetchrammerheadsession.spacesaver2000.repl.co/?existing=" + encodeURIComponent(ram_cookie))).text());
+	const new_id = (await (await fetch("https://fetchrammerheadsession.spacesaver2000.repl.co/?existing=" + encodeURIComponent(ram_cookie.toLowerCase().includes("error") ? undefined : ram_cookie))).text());
 	console.log(new_id);
-	setCookie("ram", new_id, 365250);
+	if (!new_id.toLowerCase().startsWith("http")) {
+		alert("An error has occured while fetching rammerhead id.");
+		throw("Invalid id.");
+	}
+	let split_id = new_id.split("/");
+	setCookie("ram", split_id[split_id.length - 2], 365250);
 	return new_id;
 }
+
 function findInFavorites(site) {
 	if ((typeof site) == "string") {
 		site = {url: site};
@@ -60,7 +66,7 @@ function setFavorites(favs) {
 }
 function loadStuff() {
 	getRamSession().then(ram => {
-		document.getElementById("open_in_ram").href = "https://rammerhead-heroku.spacesaver2000.repl.co/" + ram + "/" + window.location.href;
+		document.getElementById("open_in_ram").href = ram + window.location.href;
 	}).catch(err => {
 		console.log(err);
 	});
