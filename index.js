@@ -38,11 +38,12 @@ async function getRamSession() {
 	const ram_cookie = getCookie("ram");
 	const new_id = (await (await fetch("https://fetchrammerheadsession.spacesaver2000.repl.co/?existing=" + encodeURIComponent(ram_cookie.toLowerCase().includes("error") ? undefined : ram_cookie))).text());
 	console.log(new_id);
-	if (new_id.toLowerCase().includes("error")) {
+	if (!new_id.toLowerCase().startsWith("http")) {
 		alert("An error has occured while fetching rammerhead id.");
 		throw("Invalid id.");
 	}
-	setCookie("ram", new_id, 365250);
+	let split_id = new_id.split("/");
+	setCookie("ram", split_id[split_id.length - 2], 365250);
 	return new_id;
 }
 function findInFavorites(site) {
@@ -112,7 +113,7 @@ function injectTile(container, title, url, image, favorite_status, reverse) {
 	open_ram.addEventListener("click", async () => {
 		open_ram.textContent = "Connecting..."
 		const ram = await getRamSession();
-		window.location.href = "https://rammerhead-heroku.spacesaver2000.repl.co/" + ram + "/" + url;
+		window.location.href = ram + url;
 	});
 	box.appendChild(name);
 	box.appendChild(fav_butt);
@@ -151,6 +152,6 @@ async function loadStuff() {
 		setFavorites(favorites);
 		location.reload();
 	});
-	document.getElementById("open_in_ram").href = "https://rammerhead-heroku.spacesaver2000.repl.co/" + (await getRamSession()) + "/" + window.location.href;
+	document.getElementById("open_in_ram").href = (await getRamSession()) + window.location.href;
 }
 window.onload = loadStuff;
