@@ -161,6 +161,6 @@ a:visited {
 	display: inline;
 }
 div[style='position: fixed; margin-top: 40px; text-align: center; max-width: 100%; width: 800px; height: 450px; z-index: 9999; top: 10px;'] {
-	/* display: none !important; */
+	display: none !important;
 	color: black !important;
 }
