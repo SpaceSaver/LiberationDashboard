@@ -22,7 +22,7 @@ function getCookie(cname) {
 			return decodeURIComponent(c.substring(name.length, c.length));
 		}
 	}
-	return "";
+	return undefined;
 }
 function deleteCookie(cname) {
 	document.cookie = cname + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';

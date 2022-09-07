@@ -22,7 +22,7 @@ function getCookie(cname) {
 			return decodeURIComponent(c.substring(name.length, c.length));
 		}
 	}
-	return "";
+	return undefined;
 }
 function deleteCookie(cname) {
 	document.cookie = cname + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
@@ -36,9 +36,14 @@ function getFavorites() {
 }
 async function getRamSession() {
 	const ram_cookie = getCookie("ram");
-	const new_id = (await (await fetch("https://fetchrammerheadsession.spacesaver2000.repl.co/?existing=" + encodeURIComponent(ram_cookie))).text());
+	const new_id = (await (await fetch("https://fetchrammerheadsession.spacesaver2000.repl.co/?existing=" + encodeURIComponent((ram_cookie.toLowerCase().includes("error")) ? undefined : ram_cookie))).text());
 	console.log(new_id);
-	setCookie("ram", new_id, 365250);
+	if (!new_id.toLowerCase().startsWith("http") || new_id.toLowerCase().includes("error")) {
+		alert("An error has occured while fetching rammerhead id.");
+		throw("Invalid id.");
+	}
+	let split_id = new_id.split("/");
+	setCookie("ram", split_id[split_id.length - 2], 365250);
 	return new_id;
 }
 function findInFavorites(site) {
@@ -60,7 +65,7 @@ function setFavorites(favs) {
 }
 function loadStuff() {
 	getRamSession().then(ram => {
-		document.getElementById("open_in_ram").href = "https://rammerhead-spacesaver.herokuapp.com/" + ram + "/" + window.location.href;
+		document.getElementById("open_in_ram").href = ram + window.location.href;
 	}).catch(err => {
 		console.log(err);
 	});
@@ -70,5 +75,17 @@ function loadStuff() {
 		deleteCookie("favs");
 		alert("Cookies deleted!");
 	});
+	const no_crypto = document.querySelector("#no_crypto");
+	const yes_crypto = document.querySelector("yes_crypto");
+	no_crypto.addEventListener("click", () => {
+		setCookie("no_crypto", "1", 365);
+		alert("Opted out for 1 year. :(");
+		window.location.reload();
+	});
+	yes_crypto.addEventListener("click", () => {
+		deleteCookie("no_crypto");
+		alert("Opted in! :)");
+		window.location.reload();
+	})
 }
 window.onload = loadStuff;
