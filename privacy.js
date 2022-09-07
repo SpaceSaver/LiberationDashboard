@@ -76,7 +76,7 @@ function loadStuff() {
 		alert("Cookies deleted!");
 	});
 	const no_crypto = document.querySelector("#no_crypto");
-	const yes_crypto = document.querySelector("yes_crypto");
+	const yes_crypto = document.querySelector("#yes_crypto");
 	no_crypto.addEventListener("click", () => {
 		setCookie("no_crypto", "1", 365);
 		alert("Opted out for 1 year. :(");
