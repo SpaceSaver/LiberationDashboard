@@ -58,5 +58,10 @@
 		"title": "Revolt",
 		"url": "https://app.revolt.chat/",
 		"image": "https://developers.revolt.chat/img/logo.png"
+	},
+	{
+		"title": "UV",
+		"url": "https://uv.eth0sdashboard.gq/",
+		"image": "Ultraviolet.png"
 	}
 ]
