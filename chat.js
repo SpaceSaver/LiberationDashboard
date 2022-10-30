@@ -34,18 +34,18 @@ function getFavorites() {
 		return [];
 	}
 }
-async function getRamSession() {
-	const ram_cookie = getCookie("ram");
-	const new_id = (await (await fetch("https://ramlink.eth0sdashboard.gq/?existing=" + encodeURIComponent((!ram_cookie || ram_cookie.toLowerCase().includes("error")) ? undefined : ram_cookie))).text());
-	console.log(new_id);
-	if (!new_id.toLowerCase().startsWith("http") || new_id.toLowerCase().includes("error")) {
-		alert("An error has occured while fetching rammerhead id.");
-		throw("Invalid id.");
-	}
-	let split_id = new_id.split("/");
-	setCookie("ram", split_id[split_id.length - 2], 365250);
-	return new_id;
-}
+// async function getRamSession() {
+// 	const ram_cookie = getCookie("ram");
+// 	const new_id = (await (await fetch("https://ramlink.eth0sdashboard.gq/?existing=" + encodeURIComponent((!ram_cookie || ram_cookie.toLowerCase().includes("error")) ? undefined : ram_cookie))).text());
+// 	console.log(new_id);
+// 	if (!new_id.toLowerCase().startsWith("http") || new_id.toLowerCase().includes("error")) {
+// 		alert("An error has occured while fetching rammerhead id.");
+// 		throw("Invalid id.");
+// 	}
+// 	let split_id = new_id.split("/");
+// 	setCookie("ram", split_id[split_id.length - 2], 365250);
+// 	return new_id;
+// }
 
 function findInFavorites(site) {
 	if ((typeof site) == "string") {
@@ -65,11 +65,7 @@ function setFavorites(favs) {
 	setCookie("favs", JSON.stringify(favs), 365250);
 }
 function loadStuff() {
-	getRamSession().then(ram => {
-		document.getElementById("open_in_ram").href = ram + window.location.href;
-	}).catch(err => {
-		console.log(err);
-	});
+	document.getElementById("open_in_ram").href = "https://uv.eth0sdashboard.gq/service/" + encodeUV(window.location.href);
 	const frame = document.getElementById("frame");
 	const button = document.getElementById("fs");
 	// button.addEventListener("click", () => {
@@ -83,5 +79,8 @@ function loadStuff() {
 			frame.classList.remove("fs");
 		}
 	}
+}
+function encodeUV(url) {
+	return encodeURIComponent(url.toString().split('').map((char, ind) => ind % 2 ? String.fromCharCode(char.charCodeAt() ^ 2) : char).join(''));
 }
 window.onload = loadStuff;
