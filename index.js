@@ -34,18 +34,18 @@ function getFavorites() {
 		return [];
 	}
 }
-// async function getRamSession() {
-// 	const ram_cookie = getCookie("ram");
-// 	const new_id = (await (await fetch("https://ramlink.eth0sdashboard.gq/?existing=" + encodeURIComponent((!ram_cookie || ram_cookie.toLowerCase().includes("error")) ? undefined : ram_cookie))).text());
-// 	console.log(new_id);
-// 	if (!new_id.toLowerCase().startsWith("http") || new_id.toLowerCase().includes("error")) {
-// 		alert("An error has occured while fetching rammerhead id.");
-// 		throw("Invalid id.");
-// 	}
-// 	let split_id = new_id.split("/");
-// 	setCookie("ram", split_id[split_id.length - 2], 365250);
-// 	return new_id;
-// }
+async function getRamSession() {
+	const ram_cookie = getCookie("ram");
+	const new_id = (await (await fetch("https://ramlink.eth0sdashboard.gq/?existing=" + encodeURIComponent((!ram_cookie || ram_cookie.toLowerCase().includes("error")) ? undefined : ram_cookie))).text());
+	console.log(new_id);
+	if (!new_id.toLowerCase().startsWith("http") || new_id.toLowerCase().includes("error")) {
+		alert("An error has occured while fetching rammerhead id.");
+		throw("Invalid id.");
+	}
+	let split_id = new_id.split("/");
+	setCookie("ram", split_id[split_id.length - 2], 365250);
+	return new_id;
+}
 function findInFavorites(site) {
 	if ((typeof site) == "string") {
 		site = {url: site};
@@ -82,7 +82,7 @@ function injectTile(container, title, url, image, favorite_status, reverse) {
 	name.textContent = title;
 	fav_butt.textContent = favorite_status ? "Unfavorite" : "Favorite";
 	open_butt.textContent = "Open";
-	open_ram.textContent = "Open with Ultraviolet"
+	open_ram.textContent = "Open with Rammerhead"
 	img.src = image;
 	open_butt.addEventListener("click", () => {
 		window.location.href = url;
@@ -112,7 +112,8 @@ function injectTile(container, title, url, image, favorite_status, reverse) {
 	});
 	open_ram.addEventListener("click", async () => {
 		open_ram.textContent = "Connecting..."
-		window.location.href = "https://uv.eth0sdashboard.gq/service/" + encodeUV(url);
+		const ram = await getRamSession();
+		window.location.href = ram + url;
 	});
 	box.appendChild(name);
 	box.appendChild(fav_butt);
@@ -123,9 +124,6 @@ function injectTile(container, title, url, image, favorite_status, reverse) {
 	cont.appendChild(box);
 	if (reverse) container.insertBefore(cont, container.firstChild);
 	else container.appendChild(cont);
-}
-function encodeUV(url) {
-	return encodeURIComponent(url.toString().split('').map((char, ind) => ind % 2 ? String.fromCharCode(char.charCodeAt() ^ 2) : char).join(''));
 }
 async function loadStuff() {
 	favorites = getFavorites();
@@ -154,6 +152,6 @@ async function loadStuff() {
 		setFavorites(favorites);
 		location.reload();
 	});
-	document.getElementById("open_in_ram").href = "https://uv.eth0sdashboard.gq/service/" + encodeUV(window.location.href);
+	document.getElementById("open_in_ram").href = (await getRamSession()) + window.location.href;
 }
 window.onload = loadStuff;
