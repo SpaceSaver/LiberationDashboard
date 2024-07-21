@@ -1,1 +1,1 @@
-https://www.eth0sdashboard.gq
+https://dash.eth0s.dev
