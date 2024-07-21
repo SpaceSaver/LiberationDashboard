@@ -17,7 +17,7 @@
 	{
 		"title": "Ecosia",
 		"url": "https://www.ecosia.org",
-		"image": "https://infopages-prod-cdn.ecosia.org/assets/images/favicon-37b4463317.ico"
+		"image": "https://ecosia.org/favicon.ico"
 	},
 	{
 		"title": "Instagram",
@@ -36,7 +36,7 @@
 	},
 	{
 		"title": "Android Emulator",
-		"url": "https://www.apkonline.net/runapk/start-androidapk.html?app=android_blank",
+		"url": "https://now.gg/apps/uncube/7074/now.html",
 		"image": "droid.png"
 	},
 	{
@@ -57,11 +57,6 @@
 	{
 		"title": "Revolt",
 		"url": "https://app.revolt.chat/",
-		"image": "https://developers.revolt.chat/img/logo.png"
-	},
-	{
-		"title": "UV",
-		"url": "https://uv.eth0sdashboard.gq/",
-		"image": "Ultraviolet.png"
+		"image": "https://revolt.chat/favicon.ico"
 	}
 ]
