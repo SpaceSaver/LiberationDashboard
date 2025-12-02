@@ -53,10 +53,5 @@
 		"title": "YouTube",
 		"url": "https://m.youtube.com/",
 		"image": "YouTube.png"
-	},
-	{
-		"title": "Revolt",
-		"url": "https://app.revolt.chat/",
-		"image": "https://revolt.chat/favicon.ico"
 	}
 ]
